@@ -17,47 +17,49 @@ class Player:
     def get_adadachi_fav_food(self): 
         return self.inventory["foods"][self.adadachi.personality["fav_food"]]
 
+    def get_adadachi_fav_game(self): 
+        return self.inventory["games"][self.adadachi.personality["fav_game"]]
+    
+    def get_adadachi_hates_food(self): 
+        return self.inventory["foods"][self.adadachi.personality["hates_food"]]
+    
+    def get_adadachi_hates_game(self): 
+        return self.inventory["games"][self.adadachi.personality["hates_game"]]
+
     def get_happiness_level(self): 
         return self.adadachi.happiness
 
     def get_status(self): 
         print(STATUS)
-        adadachi_name = self.adadachi.name
-        hunger_level = self.adadachi.hunger
-        poop_level = self.adadachi.poop_lvl
-        clean_level = self.adadachi.clean_level
-        hates_food = self.inventory["foods"][self.adadachi.personality["hates_food"]]
-        fav_game = self.inventory["games"][self.adadachi.personality["fav_game"]]
-        hates_game = self.inventory["games"][self.adadachi.personality["hates_game"]]
-        
+            
         print(
-            f"""Hello! My name is {adadachi_name}. 
-            My hunger level is {hunger_level}.
+            f"""Hello! My name is {self.adadachi.name}. 
+            My hunger level is {self.adadachi.hunger}.
             My happiness level is {self.get_happiness_level()}.
             My fav food is {self.get_adadachi_fav_food()}.
-            My least fav food is {hates_food}.
-            My fav game is {fav_game}.
-            My least fav game is {hates_game}.
-            My poop level is {poop_level}.
-            My clean level is {clean_level}."""
+            My least fav food is {self.get_adadachi_hates_food()}.
+            My fav game is {self.get_adadachi_fav_game()}.
+            My least fav game is {self.get_adadachi_hates_game()}.
+            My poop level is {self.adadachi.poop_lvl}.
+            My clean level is {self.adadachi.clean_level}."""
             )
             
     def clean(self): 
         self.adadachi.clean_level += bubble_clean
         self.adadachi.happiness += bubble_happyiness
 
-        print("Your adadachi has been given a bubble bath!")
+        print(f"Your adadachi has been given a bubble bath! Its happy level is {self.adadachi.happiness} and its clean level is {self.adadachi.clean_level}.")
     
     def feed(self, food): 
         if food == self.get_adadachi_fav_food():
             self.adadachi.happiness += 2
-        elif food == hates_food:
-            self.adadachi.happiness -= 1 
+        elif food == self.get_adadachi_hates_food():
+            self.adadachi.happiness += 0 
         else: 
             self.adadachi.happiness +=1 
         
-        hunger_level = 0
-        print(f"Your adadachi has been fed {food} and it's happy level is {self.adadachi.happiness}.")
+        self.adadachi.hunger = 0
+        print(f"Your adadachi has been fed {food}. Its happy level is {self.adadachi.happiness} and its hunger level is {self.adadachi.hunger}.")
 
     def play_with_adadachi(self, adadachi):
         pass
