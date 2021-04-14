@@ -40,7 +40,9 @@ def start_game():
                 else:
                     break
             elif option == "p":
-                player.play_with_adadachi()
+                game = input("what do you want to play with your Adadachi? ")
+                if game == "hide and seek":
+                    player.play_hide_and_seek()
             elif option == "x":
                 return display(EXIT)
         
